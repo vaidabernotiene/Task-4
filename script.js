@@ -13,6 +13,17 @@ const divOutputEl = document.querySelector("#output");
 const ENDPOINT = "./cars.json";
 
 async function getCarsData() {
+  const response = await fetch(ENDPOINT)
+    .then((response) => {
+      if (response.ok) {
+        console.log("GET request succesful");
+      } else {
+        console.log("GET request unsuccesful");
+      }
+      return response;
+    })
+    .catch((err) => console.log(err));
+  const data = await response.json();
   
 }
 

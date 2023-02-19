@@ -27,4 +27,10 @@ async function getCarsData() {
   
 }
 
+function updateOutput(data) {
+  data.forEach((element) => {
+
+  });
+}
+
 getCarsData();

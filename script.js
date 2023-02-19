@@ -10,6 +10,11 @@ bent minimalų stilių;
 -------------------------------------------------------------------------- */
 const divOutputEl = document.querySelector("#output");
 
+divOutputEl.setAttribute(
+  "style",
+  "display: flex; flex-wrap: wrap; justify-content: space-around"
+);
+
 const ENDPOINT = "./cars.json";
 
 async function getCarsData() {
@@ -24,12 +29,26 @@ async function getCarsData() {
     })
     .catch((err) => console.log(err));
   const data = await response.json();
-  
+  updateOutput(data);
 }
 
 function updateOutput(data) {
   data.forEach((element) => {
+    const cardsEl = document.createElement("div");
+    cardsEl.className = "container";
+    cardsEl.style.cssText =
+      "background-color: #222; color: white; gap: 20px, margin-bottom: 20px; padding: 20px; width: 60%";
 
+    const headerEl = document.createElement("h1");
+    headerEl.textContent = `${element.brand}`;
+    headerEl.style.color = "green";
+    const textEl = document.createElement("h3");
+    textEl.style.alignSelf = "left";
+    textEl.style.height = "100%";
+    textEl.textContent = `${element.models}`;
+
+    divOutputEl.append(cardsEl);
+    cardsEl.append(headerEl, textEl);
   });
 }
 
